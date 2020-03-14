@@ -1,5 +1,5 @@
 parser={
-    ver:"0.0.10",
+    ver:"0.0.11",
     parser:[
         {
             name:"Codeforces", //oj name
@@ -126,6 +126,23 @@ parser={
             getTitle:function(){ //the function for getting title. Null for invalid problem.
                 var arr=document.getElementsByClassName("statTextBig")[0].innerText.split(" ")
                 return arr[arr.length-1];
+            }
+        },
+        {
+            name:"POJ", //oj name
+            regex:`.*poj\.org\/problem.*`, //check site
+            getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
+                var x=location.href.split("?")
+                var y=x[1].split("&");
+                for(var i=0;i<y.length;i++){
+                    if(y[i].startsWith("id=")){
+                        return y[i].substr(3);
+                    }
+                }
+            },
+
+            getTitle:function(){ //the function for getting title. Null for invalid problem.
+                return document.getElementsByClassName("ptt")[0].innerText;
             }
         },
     ]
