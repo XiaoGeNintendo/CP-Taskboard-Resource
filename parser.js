@@ -10,7 +10,7 @@ function clear(x){
 }
 
 parser={
-    ver:"0.0.12.1",
+    ver:"0.0.13",
     parser:[
         {
             name:"Codeforces", //oj name
@@ -169,5 +169,22 @@ parser={
                 return document.getElementsByClassName("title_1gJgg")[0].innerText;
             }
         },
+        {
+            name:"Youtube", //oj name
+            regex:`.*youtube\.com\/watch\?.*`, //check site
+            getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
+                var x=location.href.split("?")
+                var y=x[1].split("&");
+                for(var i=0;i<y.length;i++){
+                    if(y[i].startsWith("v=")){
+                        return y[i].substr(2);
+                    }
+                }
+            },
+
+            getTitle:function(){ //the function for getting title. Null for invalid problem.
+                return document.getElementsByClassName("title")[0].innerText;
+            }
+        }
     ]
 }
