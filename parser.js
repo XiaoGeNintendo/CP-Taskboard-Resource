@@ -1,5 +1,16 @@
+function clear(x){
+    var y=[]
+    for(var i=0;i<x.length;i++){
+        if(x[i]!=""){
+            y.push(x[i]);
+        }
+    }
+
+    return y;
+}
+
 parser={
-    ver:"0.0.12",
+    ver:"0.0.12.1",
     parser:[
         {
             name:"Codeforces", //oj name
@@ -56,7 +67,8 @@ parser={
             name:"Atcoder", //oj name
             regex:`.*\.contest\.atcoder\.jp\/tasks\/.*`, //check site
             getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
-                var vs=location.href.split("/");
+                var vs=clear(location.href.split("/"));
+                
                 for(var i=0;i<vs.length;i++){
                     if(vs[i].includes("contest")){
                         return vs[i].split(".")[0]+"-"+nqoa(vs[i+2])
@@ -73,7 +85,7 @@ parser={
             name:"HHSOJEssential", //oj name
             regex:`.*betaoj\.hellholestudios\.top\/HellOJ\/pview\.jsp\?.*`, //check site
             getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
-                var vs=location.href.split("/");
+                var vs=clear(location.href.split("/"));
                 var vs2=vs[vs.length-1].split("?");
                 var vs3=vs2[vs2.length-1].split("#");
                 var vs4=vs3[0].split("&"); //"a=b" "c=d"
@@ -98,7 +110,7 @@ parser={
             name:"HHSOJ", //oj name
             regex:`.*oj\.hellholestudios\.top\/problem\.jsp\?.*id=.*`, //check site
             getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
-                var vs=location.href.split("/");
+                var vs=clear(location.href.split("/"));
                 var vs2=vs[vs.length-1].split("?");
                 var vs3=vs2[vs2.length-1].split("#");
                 var vs4=vs3[0].split("&");
@@ -149,7 +161,7 @@ parser={
             name:"ZOJ", //oj name
             regex:`.*zoj\.pintia\.cn\/problem-sets\/.*\/problems\/.*`, //check site
             getId:function(){ //the function for getting id. UID=oj name+"_"+id. If null is returned, the problem won't be considered valid
-                var x=location.href.split("/");
+                var x=clear(location.href.split("/"));
                 return x[x.length-3]+"-"+x[x.length-1]
             },
 
