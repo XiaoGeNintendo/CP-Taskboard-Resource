@@ -11,3 +11,9 @@
 - [HHSOJ Web Edition](https://oj.hellholestudios.top)
 
 - [Topcoder](https://topcoder.com)
+
+- [POJ](https://poj.org)
+
+- [ZOJ](https://zoj.pintia.cn/home)
+
+- [Youtube?](https://youtube.com)
